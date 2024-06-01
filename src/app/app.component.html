@@ -1,0 +1,45 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <!-- Name field -->
+  <label for="name">Your name:</label>
+  <input type="text" name="name" id="name" formControlName="name"
+/>
+  <div *ngIf="profileForm.controls['name'].touched && !profileForm.controls['name'].valid">
+    <span align="right" *ngIf="profileForm.controls['name'].hasError('required') ">
+      First name is required  
+      </span>
+    <span *ngIf="profileForm.controls['name'].hasError('minlength') ">
+     Min length is 2
+    </span>
+  </div>
+
+  <!-- Email field -->
+  <label for="email">Your email address:</label>
+  <input type="text" name="email" id="email" formControlName='Emailid'/>
+  <div *ngIf="profileForm.controls['Emailid'].touched && !profileForm.controls['Emailid'].valid">
+    <span *ngIf="profileForm.controls['Emailid'].hasError('required') ">
+     Email ID is needed  
+       </span>
+
+    <span *ngIf="profileForm.controls['Emailid'].hasError('email') ">
+     Invalid Email ID  
+      </span>
+
+  </div>
+
+  <!-- Repeat email field -->
+  <label for="email2">Enter your email address again:</label>
+  <input type="text" name="email2" id="email2" />
+  <div *ngIf="false">Please ensure your email addresses match</div>
+
+  <!-- Password field -->
+  <label for="password">Your new password:</label>
+  <input type="password" name="password" id="password" formControlName='password'/>
+  <div *ngIf="false">Please enter a password</div>
+  <div *ngIf="false">Passwords must be at least 8 characters</div>
+
+  <!-- Special message from the NameInfoService -->
+  <div class="message">{{ nameMessage }}</div>
+
+  <p>Complete the form to enable button.</p>
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>
